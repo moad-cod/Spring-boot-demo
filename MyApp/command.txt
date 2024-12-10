@@ -1,0 +1,10 @@
+#1
+    Check if Java was installed
+#2
+    Go to your app and copy the path
+#3
+    open CMD
+    cd AppPath
+#4
+    Write this command
+        ==>mvn spring-boot:run
