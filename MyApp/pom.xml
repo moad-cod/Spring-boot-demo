@@ -41,6 +41,7 @@
 		</dependency>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<!-- ADD SUPPORT FOR SPRING BOOT ACTUATOR -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -54,6 +55,8 @@
 		</dependency>
 =======
 >>>>>>> eb067eb (RunSpringBootProjectFromCommandLine)
+=======
+>>>>>>> 44ec937 (InjectingPropreties)
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
