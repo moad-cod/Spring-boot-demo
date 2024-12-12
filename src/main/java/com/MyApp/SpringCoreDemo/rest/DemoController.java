@@ -11,9 +11,9 @@ public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) { // First character lower-case
+    public DemoController(Coach theCoach) { // First character lower-case
         myCoach = theCoach;
-    }
+    } // Followed the primary class
 
     @GetMapping("/dailyworkout")
     String dailyWorkout() {
