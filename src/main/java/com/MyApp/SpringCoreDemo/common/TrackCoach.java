@@ -1,10 +1,17 @@
 package com.MyApp.SpringCoreDemo.common;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 // This marks the class as a Spring bean
 @Component
+// refers to delaying the creation of beans until they are actually needed
+@Lazy
 public class TrackCoach implements Coach {
+
+    public TrackCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName()); //Just the class name without the package structure
+    }
 
     @Override
     public String getDailyWorkout() {
