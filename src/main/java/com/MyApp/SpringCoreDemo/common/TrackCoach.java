@@ -5,8 +5,6 @@ import org.springframework.stereotype.Component;
 
 // This marks the class as a Spring bean
 @Component
-// refers to delaying the creation of beans until they are actually needed
-@Lazy
 public class TrackCoach implements Coach {
 
     public TrackCoach() {

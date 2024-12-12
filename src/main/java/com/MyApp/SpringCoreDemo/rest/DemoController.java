@@ -9,16 +9,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController {
     private Coach myCoach;
-
+    private Coach anotherCoach;
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) { // First character lower-case
+    public DemoController(
+            // Default scope is singleton
+            @Qualifier("cricketCoach") Coach theCoach,
+            @Qualifier("cricketCoach") Coach theAnotherCoach
+    )
+    { // First character lower-case
+        System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
+        anotherCoach = theAnotherCoach;
     } // Followed the primary class
 
     @GetMapping("/dailyworkout")
-    String dailyWorkout() {
+    public String dailyWorkout() {
         return myCoach.getDailyWorkout();
     }
 
-
+    @GetMapping("/check")
+    public String check() {
+        if (myCoach.equals(anotherCoach)) { //If it's singleton
+            return "myCoach equals anotherCoach";
+        }else{ //If it's prototype
+            return "myCoach not equals anotherCoach";
+        }
+    }
 }
