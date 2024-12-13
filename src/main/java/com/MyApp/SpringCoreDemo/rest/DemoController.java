@@ -9,17 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController {
     private Coach myCoach;
-    private Coach anotherCoach;
     @Autowired
     public DemoController(
             // Default scope is singleton
-            @Qualifier("cricketCoach") Coach theCoach,
-            @Qualifier("cricketCoach") Coach theAnotherCoach
+            //@Qualifier("swimCoach") Coach theCoach // You can do this
+            @Qualifier("aquatic") Coach theCoach // Or this
     )
     { // First character lower-case
         System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
-        anotherCoach = theAnotherCoach;
     } // Followed the primary class
 
     @GetMapping("/dailyworkout")
@@ -27,12 +25,4 @@ public class DemoController {
         return myCoach.getDailyWorkout();
     }
 
-    @GetMapping("/check")
-    public String check() {
-        if (myCoach.equals(anotherCoach)) { //If it's singleton
-            return "myCoach equals anotherCoach";
-        }else{ //If it's prototype
-            return "myCoach not equals anotherCoach";
-        }
-    }
 }
