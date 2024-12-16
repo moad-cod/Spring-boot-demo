@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+
+import java.util.List;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -17,9 +20,56 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return  runner -> {
-			//createStudent(studentDAO);
-			createMultipleStudents(studentDAO);
+			// createStudent(studentDAO);
+			// createMultipleStudents(studentDAO);
+
+			// readStudent(studentDAO);
+
+			// queryForStudenets(studentDAO);
+
+			queryForStudentsByLastName(studentDAO);
 		};
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		// get a list of students
+		List<Student> theStudents = studentDAO.findByLastName("choa");
+
+		// display list of students
+		for (Student student : theStudents) {
+			System.out.println(student);
+		}
+	}
+
+	private void queryForStudenets(StudentDAO studentDAO) {
+
+		// get a list of students
+		List<Student> theStudents = studentDAO.findAll();
+
+		// display list of students
+		for (Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		// Create a student object
+		System.out.println("Creating new student object...");
+		Student tempstudent = new Student("Mouad", "Med", "XXXXX@gmail.com");
+
+		// save the student
+		System.out.println("Saving the student...");
+		studentDAO.save(tempstudent);
+		// display id student based on the id: primary key
+		int theID = tempstudent.getId();
+		System.out.println("Saved student. Generated ID: " + theID);
+
+		// retrieve student based on the id: primary key
+		System.out.println("Retrieving student with ID: " + theID);
+		Student myStudent = studentDAO.findById(theID);
+
+		// display student
+		System.out.println("Found the student:  " + myStudent);
 	}
 
 	private void createMultipleStudents(StudentDAO studentDAO) {
